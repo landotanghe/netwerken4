@@ -82,10 +82,13 @@ public class Boek implements Serializable{
     private void setAuteurs(Set<Auteur> auteurs) {
         this.auteurs = auteurs;
     }
-
+/*
     public Iterator<Auteur> getAuteurIterator(){
         return auteurs.iterator();
     }
+  */  
     
-    
+    public String toString(){
+        return titel+"("+isbn+")";
+    }
 }

@@ -106,6 +106,10 @@ public class BoekenDao {
     public List<Uitgeverij> getUitgeverijen(){
         return sessie.createQuery("from Uitgeverij").list();
     }
+
+    List<Auteur> getAuteurs() {
+        return sessie.createQuery("from Auteur").list();
+    }
     
     
 }

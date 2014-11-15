@@ -104,7 +104,7 @@ public class Uitgeverij implements Serializable{
             return s;
     }
         
-    public Iterator<Boek> getBoekIterator(){
+    public Iterator<Boek> iteratorBoeken(){
         return boeken.iterator();
     }
     

@@ -60,5 +60,12 @@ public class Auteur extends Persoon implements Serializable{
         return boeken.iterator();
     }
     
+    public String toString(){
+        String s=super.getNaam()+" "+super.getVoornaam()+"\n";
+        for(Boek boek:boeken){
+            s+=boek+"\n";
+        }
+        return s;
+    }
     
 }
