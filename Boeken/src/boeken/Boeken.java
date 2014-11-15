@@ -63,6 +63,7 @@ public class Boeken {
         
         //6 Zorg ervoor dat de gebruiker enkel eigenschappen kan oproepen die automatisch geladen worden en dat hij geen eigenschappen kan 
         //  aanpassen, m.a.w. beperk de interface van de teruggegeven objecten. Gebruik hiervoor refactoring.
+        // in progress...
         
         //7  Een lijst van auteurs opvragen. Ook hier zorg je ervoor dat de gebruiker enkel de beschikbare eigenschappen kan oproepen.
         //8  Eén boek met bijhorende auteurs toevoegen. Je mag hierbij veronderstellen dat geen enkele auteur reeds ingegeven is in de databank.

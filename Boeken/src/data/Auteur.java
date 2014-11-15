@@ -7,6 +7,7 @@
 package data;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.Set;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -51,8 +52,12 @@ public class Auteur extends Persoon implements Serializable{
         return boeken;
     }
 
-    public void setBoeken(Set<Boek> boeken) {
+    private void setBoeken(Set<Boek> boeken) {
         this.boeken = boeken;
+    }
+    
+    protected Iterator<Boek> iteratorBoeken(){
+        return boeken.iterator();
     }
     
     

@@ -8,6 +8,7 @@ package data;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.persistence.*;
 
@@ -59,7 +60,9 @@ public class Uitgeverij implements Serializable{
      * @return
      */
     public boolean add(Boek boek){
-        return false;
+        boolean succes = boeken.add(boek);
+        boek.setUitgeverij(this);
+        return succes;
     }
 
     /**
@@ -84,11 +87,11 @@ public class Uitgeverij implements Serializable{
     }
 
     @OneToMany(mappedBy = "uitgeverij")
-    public List<Boek> getBoeken() {
+    private List<Boek> getBoeken() {
         return boeken;
     }
 
-    public void setBoeken(List<Boek> boeken) {
+    private void setBoeken(List<Boek> boeken) {
         this.boeken = boeken;
     }
     
@@ -99,6 +102,10 @@ public class Uitgeverij implements Serializable{
                 s+="\t"+boek+"\n";
             }
             return s;
+    }
+        
+    public Iterator<Boek> getBoekIterator(){
+        return boeken.iterator();
     }
     
 }

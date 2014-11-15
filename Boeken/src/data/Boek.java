@@ -7,6 +7,7 @@
 package data;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -68,21 +69,23 @@ public class Boek implements Serializable{
         return uitgeverij;
     }
 
-    public void setUitgeverij(Uitgeverij uitgeverij) {
+    protected void setUitgeverij(Uitgeverij uitgeverij) {
         this.uitgeverij = uitgeverij;
     }
 
     @ManyToMany()
     @JoinTable(name = "UITGAVE_BOEKEN", joinColumns = @JoinColumn(name="BOEK"),inverseJoinColumns = @JoinColumn(name="AUTEUR"))
-    public Set<Auteur> getAuteurs() {
+    private Set<Auteur> getAuteurs() {
         return auteurs;
     }
 
-    public void setAuteurs(Set<Auteur> auteurs) {
+    private void setAuteurs(Set<Auteur> auteurs) {
         this.auteurs = auteurs;
     }
 
-    
+    public Iterator<Auteur> getAuteurIterator(){
+        return auteurs.iterator();
+    }
     
     
 }
