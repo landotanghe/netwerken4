@@ -20,6 +20,8 @@ public class Voorkeur  implements Serializable{
     private int maxPrijs;
     private String genre;
 
+    private Klant klant;
+    
     public Voorkeur() {
     }
 
@@ -50,5 +52,16 @@ public class Voorkeur  implements Serializable{
     public void setGenre(String genre) {
         this.genre = genre;
     }
+
+    @OneToOne(mappedBy = "voorkeur")
+    public Klant getKlant() {
+        return klant;
+    }
+
+    public void setKlant(Klant klant) {
+        this.klant = klant;
+    }
+    
+    
     
 }

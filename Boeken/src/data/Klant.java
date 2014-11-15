@@ -9,6 +9,8 @@ package data;
 import java.io.Serializable;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -23,6 +25,8 @@ import javax.persistence.Table;
 public class Klant extends Persoon implements Serializable{
     private String type;
 
+    private Voorkeur voorkeur;
+    
     public Klant() {
     }
 
@@ -33,5 +37,16 @@ public class Klant extends Persoon implements Serializable{
     public void setType(String type) {
         this.type = type;
     }
+
+    @OneToOne(optional=false)
+    @JoinColumn(name = "VOORKEUR",unique = true,nullable = false,updatable = false)
+    public Voorkeur getVoorkeur() {
+        return voorkeur;
+    }
+
+    public void setVoorkeur(Voorkeur voorkeur) {
+        this.voorkeur = voorkeur;
+    }
+    
     
 }
