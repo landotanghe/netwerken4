@@ -110,6 +110,11 @@ public class BoekenDao {
     List<Auteur> getAuteurs() {
         return sessie.createQuery("from Auteur").list();
     }
+
+    void addBoekAndAuthors(Boek boek) {
+        sessie.save(boek);
+        addWithIterator(boek.iteratorAuteurs());
+    }
     
     
 }

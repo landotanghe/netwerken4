@@ -21,7 +21,7 @@ import org.hibernate.Session;
  *
  * @author vongenae
  */
-public class Boeken {
+public final class Boeken {
 
     Random random;
 
@@ -31,6 +31,7 @@ public class Boeken {
         
         BoekenDao dao = new BoekenDao();
         dao.open();
+        
         //1  Eén persoon toevoegen. Als je een persoon bewaart, dan wordt ook zijn adres bewaard.
         dao.addPersoon(maakPersoon());
         
@@ -58,24 +59,29 @@ public class Boeken {
             System.out.println("");
         }
         
-        
-        
         //6 Zorg ervoor dat de gebruiker enkel eigenschappen kan oproepen die automatisch geladen worden en dat hij geen eigenschappen kan 
         //  aanpassen, m.a.w. beperk de interface van de teruggegeven objecten. Gebruik hiervoor refactoring.
-        // in progress...
         
         //7  Een lijst van auteurs opvragen. Ook hier zorg je ervoor dat de gebruiker enkel de beschikbare eigenschappen kan oproepen.
-        System.out.println("Auteurs:");
+     /*   System.out.println("Auteurs:");
         List<Auteur> auteurs = dao.getAuteurs();
         for(Auteur aut: auteurs){
             System.out.println(aut);
         }
         
         //8  Eén boek met bijhorende auteurs toevoegen. Je mag hierbij veronderstellen dat geen enkele auteur reeds ingegeven is in de databank.
+        Boek boek = maakBoek();
+        for (Auteur schrijver : maakAuteurs()) {
+            schrijver.add(boek);
+        }
+        dao.addBoekAndAuthors(boek);
+       */ 
         //9  Eén boek toevoegen. In dit geval heeft het boek één auteur waarvan de unieke identificatie wordt meegegeven aan de methode.
-        //10 Een lijst van boeken van één uitgeverij, gekenmerkt door zijn naam, ophalen. Voor een boek zijn ook al zijn auteurs en de uitgeverij gekend.
-        //11 Een lijst van boeken waarvan de naam van één van de auteurs een opgegeven naam is. Gebruik hiervoor een SQLQuery (Meer info). Test eerst de select-opdracht uit in een "SQL Command" en voeg hem dan pas toe aan je javacode.
+        //int id=auteurs.get(0).getId();
         
+        //10 Een lijst van boeken van één uitgeverij, gekenmerkt door zijn naam, ophalen. Voor een boek zijn ook al zijn auteurs en de uitgeverij gekend.
+        
+        //11 Een lijst van boeken waarvan de naam van één van de auteurs een opgegeven naam is. Gebruik hiervoor een SQLQuery (Meer info). Test eerst de select-opdracht uit in een "SQL Command" en voeg hem dan pas toe aan je javacode.
         
         dao.close();
         System.out.println("closed");
@@ -83,11 +89,6 @@ public class Boeken {
     }
     
 
-    
-    private void testUitgeverij(Session sessie){
-        Uitgeverij uit = new Uitgeverij();
-        uit.setNaam(namenUitgeverijen()[random.nextInt(4)]);
-    }
     
     
     /**

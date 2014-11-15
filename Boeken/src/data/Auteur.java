@@ -7,8 +7,10 @@
 package data;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.SortedSet;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -26,7 +28,7 @@ import javax.persistence.Table;
 public class Auteur extends Persoon implements Serializable{
     private String bibliografie;
 
-    private Set<Boek> boeken;
+    private Set<Boek> boeken=new HashSet<>();
     
     public Auteur() {
     }
@@ -44,7 +46,13 @@ public class Auteur extends Persoon implements Serializable{
     }
     
     public boolean add(Boek boek){
-        return false;
+        if(boek==null || boeken.contains(boek)){
+            return false;
+        }else{
+            boeken.add(boek);
+            boek.addAuteur(this);
+            return true;
+        }
     }
 
     @ManyToMany(mappedBy = "auteurs")

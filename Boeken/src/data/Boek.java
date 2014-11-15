@@ -7,6 +7,7 @@
 package data;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import javax.persistence.Entity;
@@ -32,7 +33,7 @@ public class Boek implements Serializable{
     private String titel;
 
     private Uitgeverij uitgeverij;
-    private Set<Auteur> auteurs;
+    private Set<Auteur> auteurs = new HashSet();
     
     public Boek() {
     }
@@ -74,7 +75,7 @@ public class Boek implements Serializable{
     }
 
     @ManyToMany()
-    @JoinTable(name = "UITGAVE_BOEKEN", joinColumns = @JoinColumn(name="BOEK"),inverseJoinColumns = @JoinColumn(name="AUTEUR"))
+    @JoinTable(name = "AUTEURS_BOEKEN", joinColumns = @JoinColumn(name="BOEK"),inverseJoinColumns = @JoinColumn(name="AUTEUR"))
     private Set<Auteur> getAuteurs() {
         return auteurs;
     }
@@ -82,11 +83,15 @@ public class Boek implements Serializable{
     private void setAuteurs(Set<Auteur> auteurs) {
         this.auteurs = auteurs;
     }
-/*
-    public Iterator<Auteur> getAuteurIterator(){
+
+    protected void addAuteur(Auteur auteur){
+        auteurs.add(auteur);
+    }
+    
+    public Iterator<Auteur> iteratorAuteurs(){
         return auteurs.iterator();
     }
-  */  
+    
     
     public String toString(){
         return titel+"("+isbn+")";
