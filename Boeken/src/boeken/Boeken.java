@@ -11,6 +11,8 @@ import data.Persoon;
 import data.Uitgeverij;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import org.hibernate.Session;
@@ -47,6 +49,17 @@ public class Boeken {
         //5  Een lijst van uitgeverijen opvragen. Test deze methode uit in een testprogramma. 
         //Welke eigenschappen kan je gebruiken of uitschrijven in je testprogramma? 
         //Waarom zijn sommige eigenschappen niet ingevuld en geven ze een foutmelding?
+        dao.close();
+        dao.open();
+        List<Uitgeverij> uitgeverijen = dao.getUitgeverijen();
+        Iterator<Uitgeverij> it=uitgeverijen.iterator();
+        while(it.hasNext()){
+            Uitgeverij u = it.next();
+            System.out.println(u);
+            System.out.println("");
+        }
+        
+        
         
         //6 Zorg ervoor dat de gebruiker enkel eigenschappen kan oproepen die automatisch geladen worden en dat hij geen eigenschappen kan 
         //  aanpassen, m.a.w. beperk de interface van de teruggegeven objecten. Gebruik hiervoor refactoring.
@@ -59,6 +72,8 @@ public class Boeken {
         
         
         dao.close();
+        System.out.println("closed");
+        System.exit(0);
     }
     
 
@@ -73,7 +88,8 @@ public class Boeken {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        new Boeken();
+        Boeken b = new Boeken();
+        System.out.println("ended");
     }
 
     private Adres maakAdres() {

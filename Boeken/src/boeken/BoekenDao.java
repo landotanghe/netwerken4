@@ -9,6 +9,7 @@ import data.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -102,8 +103,8 @@ public class BoekenDao {
      *
      * @return alle uitgeverijen
      */
-    public ArrayList<Uitgeverij> getUitgeverijen(){
-        return null;
+    public List<Uitgeverij> getUitgeverijen(){
+        return sessie.createQuery("from Uitgeverij").list();
     }
     
     

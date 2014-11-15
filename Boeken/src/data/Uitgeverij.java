@@ -92,5 +92,13 @@ public class Uitgeverij implements Serializable{
         this.boeken = boeken;
     }
     
+    public String toString(){
+            String s= getNaam()+"\n"+
+                getAdres()+"\n";
+            for(Boek boek:getBoeken()){
+                s+="\t"+boek+"\n";
+            }
+            return s;
+    }
     
 }

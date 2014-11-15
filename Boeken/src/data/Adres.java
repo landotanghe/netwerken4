@@ -70,4 +70,10 @@ public class Adres implements Serializable{
     }
 
     
+    @Override
+    public String toString(){
+        return straat+" "+huisnummer + "\n"
+                +gemeente;
+    }
+    
 }
