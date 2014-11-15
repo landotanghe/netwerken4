@@ -2,17 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/github/netwerken/netwerken4/Boeken/src/boeken/Boeken.java</file>
-            <file>file:/D:/github/netwerken/netwerken4/Boeken/src/hibernate.cfg.xml</file>
-            <file>file:/D:/github/netwerken/netwerken4/Boeken/src/boeken/BoekenDao.java</file>
-            <file>file:/D:/github/netwerken/netwerken4/Boeken/src/data/Klant.java</file>
-            <file>file:/D:/github/netwerken/netwerken4/Boeken/src/data/Voorkeur.java</file>
-            <file>file:/D:/github/netwerken/netwerken4/Boeken/src/data/Adres.java</file>
-            <file>file:/D:/github/netwerken/netwerken4/Boeken/src/data/Persoon.java</file>
-            <file>file:/D:/github/netwerken/netwerken4/Boeken/src/data/Boek.java</file>
-            <file>file:/D:/github/netwerken/netwerken4/Boeken/src/data/Uitgeverij.java</file>
-            <file>file:/D:/github/netwerken/netwerken4/Boeken/src/data/Auteur.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
