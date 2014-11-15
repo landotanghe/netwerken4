@@ -7,6 +7,7 @@
 package data;
 
 import java.io.Serializable;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -17,7 +18,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="AUTEURS")
-@PrimaryKeyJoinColumn(name="ID")
+@PrimaryKeyJoinColumn(name="PID")
+@DiscriminatorValue(value = "auteur")
 public class Auteur extends Persoon implements Serializable{
     private String bibliografie;
 

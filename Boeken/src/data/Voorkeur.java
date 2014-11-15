@@ -20,6 +20,9 @@ public class Voorkeur  implements Serializable{
     private int maxPrijs;
     private String genre;
 
+    public Voorkeur() {
+    }
+
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

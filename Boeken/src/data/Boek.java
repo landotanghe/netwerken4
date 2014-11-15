@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -24,6 +26,11 @@ public class Boek implements Serializable{
     private int id;
     private String isbn;
     private String titel;
+
+    private Uitgeverij uitgeverij;
+    
+    public Boek() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,5 +57,16 @@ public class Boek implements Serializable{
     private void setTitel(String titel) {
         this.titel = titel;
     }
+
+    @ManyToOne()    
+    @JoinColumn(name = "uitgeverij")
+    public Uitgeverij getUitgeverij() {
+        return uitgeverij;
+    }
+
+    public void setUitgeverij(Uitgeverij uitgeverij) {
+        this.uitgeverij = uitgeverij;
+    }
+    
     
 }

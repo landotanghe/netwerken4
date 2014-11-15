@@ -7,6 +7,7 @@
 package data;
 
 import java.io.Serializable;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -23,6 +24,7 @@ import javax.persistence.Table;
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 @Table(name="MENSEN")
+@DiscriminatorColumn(name = "ROL")
 public class Persoon implements Serializable{
     private int id;
     private String rijksregisternummer;
@@ -78,7 +80,7 @@ public class Persoon implements Serializable{
     
     @OneToOne
     @MapsId
-    @JoinColumn(name="ID")
+    @JoinColumn(name="ADRES")
     public Adres getAdres(){
         return adres;
     }

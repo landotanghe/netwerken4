@@ -7,6 +7,7 @@
 package data;
 
 import java.io.Serializable;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -17,9 +18,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="KOPERS")
-@PrimaryKeyJoinColumn(name="ID")
+@PrimaryKeyJoinColumn(name="PID")
+@DiscriminatorValue(value = "koper")
 public class Klant extends Persoon implements Serializable{
     private String type;
+
+    public Klant() {
+    }
 
     public String getType() {
         return type;

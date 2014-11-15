@@ -8,12 +8,15 @@ import data.Adres;
 import data.Auteur;
 import data.Persoon;
 import data.Uitgeverij;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
@@ -26,37 +29,28 @@ public class Boeken {
 
     Random random;
 
+    
     private Boeken() {
         random = new Random();
         
-        Configuration config=new Configuration();
-        config.configure();
-        ServiceRegistry reg =  new ServiceRegistryBuilder().applySettings(
-            config.getProperties()).buildServiceRegistry();
-        SessionFactory factory = config.buildSessionFactory(reg);
-        Session sessie = factory.openSession();
-        sessie.beginTransaction();
+        BoekenDao dao = new BoekenDao();
+        dao.open();
+        //1
+        dao.addPersoon(maakPersoon());
         
+        //2
+        dao.addPersonen(maakPersonen());
         
-        //testPersoon(sessie);
-        //testAuteurs(sessie);
-        testUitgeverij(sessie);
+        //3
+        dao.addAuteurs(maakAuteurs());
         
-        sessie.getTransaction().commit();
-        sessie.close();
+        //4
+        //dao.addUitgeverij(maakUitgeverij());
+        
+        dao.close();
     }
     
-    private void testPersoon(Session sessie){
-        sessie.save(maakPersoon());
-    }
 
-    private void testAuteurs(Session sessie) {
-        Set<Auteur> auteurs = maakAuteurs();
-        Iterator it = auteurs.iterator();
-        while(it.hasNext()){
-            sessie.save(it.next());
-        }
-    }
     
     private void testUitgeverij(Session sessie){
         Uitgeverij uit = new Uitgeverij();
@@ -133,6 +127,19 @@ public class Boeken {
             tekst.append(" woord");
         }
         return tekst.toString();
+    }
+
+    private Iterable<Persoon> maakPersonen() {
+        int aantal = 1 + random.nextInt(5);
+        ArrayList<Persoon> personen = new ArrayList<>();
+        for(int i=0;i<aantal;i++){
+            personen.add(maakPersoon());
+        }
+        return personen;
+    }
+
+    private Uitgeverij maakUitgeverij() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
