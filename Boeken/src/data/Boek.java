@@ -42,7 +42,7 @@ public class Boek implements Serializable{
         return id;
     }
 
-    private void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -50,7 +50,7 @@ public class Boek implements Serializable{
         return isbn;
     }
 
-    private void setIsbn(String isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
@@ -58,7 +58,7 @@ public class Boek implements Serializable{
         return titel;
     }
 
-    private void setTitel(String titel) {
+    public void setTitel(String titel) {
         this.titel = titel;
     }
 

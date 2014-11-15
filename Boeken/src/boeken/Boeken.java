@@ -6,20 +6,14 @@ package boeken;
 
 import data.Adres;
 import data.Auteur;
+import data.Boek;
 import data.Persoon;
 import data.Uitgeverij;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
 
 /**
  *
@@ -35,17 +29,34 @@ public class Boeken {
         
         BoekenDao dao = new BoekenDao();
         dao.open();
-        //1
+        //1  Eén persoon toevoegen. Als je een persoon bewaart, dan wordt ook zijn adres bewaard.
         dao.addPersoon(maakPersoon());
         
-        //2
+        //2  Een verzameling van personen toevoegen.
         dao.addPersonen(maakPersonen());
         
-        //3
+        //3  Een verzameling van auteurs toevoegen. Hoe kan je hierbij de vorige methode hergebruiken? gemeenschappelijke private methode die een iterator gebruikt
         dao.addAuteurs(maakAuteurs());
         
-        //4
-        //dao.addUitgeverij(maakUitgeverij());
+        //4  Eén uitgeverij met bijhorend adres toevoegen.
+        Uitgeverij uitgeverij=maakUitgeverij();
+        Adres adres = maakAdres();
+        uitgeverij.setAdres(adres);
+        dao.addUitgeverij(uitgeverij);
+        
+        //5  Een lijst van uitgeverijen opvragen. Test deze methode uit in een testprogramma. 
+        //Welke eigenschappen kan je gebruiken of uitschrijven in je testprogramma? 
+        //Waarom zijn sommige eigenschappen niet ingevuld en geven ze een foutmelding?
+        
+        //6 Zorg ervoor dat de gebruiker enkel eigenschappen kan oproepen die automatisch geladen worden en dat hij geen eigenschappen kan 
+        //  aanpassen, m.a.w. beperk de interface van de teruggegeven objecten. Gebruik hiervoor refactoring.
+        
+        //7  Een lijst van auteurs opvragen. Ook hier zorg je ervoor dat de gebruiker enkel de beschikbare eigenschappen kan oproepen.
+        //8  Eén boek met bijhorende auteurs toevoegen. Je mag hierbij veronderstellen dat geen enkele auteur reeds ingegeven is in de databank.
+        //9  Eén boek toevoegen. In dit geval heeft het boek één auteur waarvan de unieke identificatie wordt meegegeven aan de methode.
+        //10 Een lijst van boeken van één uitgeverij, gekenmerkt door zijn naam, ophalen. Voor een boek zijn ook al zijn auteurs en de uitgeverij gekend.
+        //11 Een lijst van boeken waarvan de naam van één van de auteurs een opgegeven naam is. Gebruik hiervoor een SQLQuery (Meer info). Test eerst de select-opdracht uit in een "SQL Command" en voeg hem dan pas toe aan je javacode.
+        
         
         dao.close();
     }
@@ -115,7 +126,7 @@ public class Boeken {
     }
 
     private String[] namenUitgeverijen() {
-        String[] namen = {"De eenhoorn", "De bezige bij", "Lannoo", "O'reilly"};
+        String[] namen = {"De eenhoorn", "De bezige bij", "Lannoo", "O'reilly","Dupuis"};
         return namen;
     }
 
@@ -139,7 +150,22 @@ public class Boeken {
     }
 
     private Uitgeverij maakUitgeverij() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Uitgeverij uitgeverij = new Uitgeverij();
+        int i=random.nextInt(namenUitgeverijen().length);
+        uitgeverij.setNaam(namenUitgeverijen()[i]);
+        
+        
+        return uitgeverij;
     }
 
+    private Boek maakBoek(){
+        Boek boek=new Boek();
+        String isbn="";
+        for(int i=0;i<10;i++){
+            isbn+= random.nextInt(10);
+        }
+        boek.setIsbn(isbn);
+        boek.setTitel(maakTitel());
+        return boek;
+    }
 }
