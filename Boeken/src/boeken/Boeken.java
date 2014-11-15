@@ -80,7 +80,7 @@ public final class Boeken {
         //9  Eén boek toevoegen. In dit geval heeft het boek één auteur waarvan de unieke identificatie wordt meegegeven aan de methode.
         int author_id=auteurs.get(0).getId();
         Boek boekje = maakBoek();
-        dao.addBoekAndAuthors(boekje,author_id);
+        dao.addBoekAndAuthor(boekje,author_id);
         
         //10 Een lijst van boeken van één uitgeverij, gekenmerkt door zijn naam, ophalen. Voor een boek zijn ook al zijn auteurs en de uitgeverij gekend.
         

@@ -113,7 +113,7 @@ public class BoekenDao {
         addWithIterator(boek.iteratorAuteurs());
     }
 
-    void addBoekAndAuthors(Boek boek, int auteur_id) {
+    void addBoekAndAuthor(Boek boek, int auteur_id) {
         Auteur auteur = (Auteur) sessie.load(Auteur.class, auteur_id);
         auteur.add(boek);
         sessie.save(boek);
