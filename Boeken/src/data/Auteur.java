@@ -7,8 +7,10 @@
 package data;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -23,6 +25,8 @@ import javax.persistence.Table;
 public class Auteur extends Persoon implements Serializable{
     private String bibliografie;
 
+    private Set<Boek> boeken;
+    
     public Auteur() {
     }
 
@@ -41,4 +45,15 @@ public class Auteur extends Persoon implements Serializable{
     public boolean add(Boek boek){
         return false;
     }
+
+    @ManyToMany(mappedBy = "auteurs")
+    private Set<Boek> getBoeken() {
+        return boeken;
+    }
+
+    public void setBoeken(Set<Boek> boeken) {
+        this.boeken = boeken;
+    }
+    
+    
 }

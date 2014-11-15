@@ -7,11 +7,14 @@
 package data;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -28,6 +31,7 @@ public class Boek implements Serializable{
     private String titel;
 
     private Uitgeverij uitgeverij;
+    private Set<Auteur> auteurs;
     
     public Boek() {
     }
@@ -67,6 +71,18 @@ public class Boek implements Serializable{
     public void setUitgeverij(Uitgeverij uitgeverij) {
         this.uitgeverij = uitgeverij;
     }
+
+    @ManyToMany()
+    @JoinTable(name = "UITGAVE_BOEKEN", joinColumns = @JoinColumn(name="BOEK"),inverseJoinColumns = @JoinColumn(name="AUTEUR"))
+    public Set<Auteur> getAuteurs() {
+        return auteurs;
+    }
+
+    public void setAuteurs(Set<Auteur> auteurs) {
+        this.auteurs = auteurs;
+    }
+
+    
     
     
 }
