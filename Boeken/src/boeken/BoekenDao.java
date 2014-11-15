@@ -95,7 +95,7 @@ public class BoekenDao {
      * @param adres
      */
     public void addUitgeverij(Uitgeverij uitgeverij){
-        
+        sessie.save(uitgeverij);
     }
     
     /**

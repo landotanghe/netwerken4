@@ -22,7 +22,7 @@ public class Uitgeverij implements Serializable{
     private String naam;
     
     private Adres adres;
-    private ArrayList<Boek> boeken=new ArrayList();
+    private List<Boek> boeken=new ArrayList();
 
     /**
      *
@@ -41,26 +41,14 @@ public class Uitgeverij implements Serializable{
         return id;
     }
 
-    /**
-     *
-     * @param id
-     */
     public void setId(int id) {
         this.id = id;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getNaam() {
         return naam;
     }
 
-    /**
-     *
-     * @param naam
-     */
     public void setNaam(String naam) {
         this.naam = naam;
     }
@@ -100,7 +88,7 @@ public class Uitgeverij implements Serializable{
         return boeken;
     }
 
-    public void setBoeken(ArrayList<Boek> boeken) {
+    public void setBoeken(List<Boek> boeken) {
         this.boeken = boeken;
     }
     
