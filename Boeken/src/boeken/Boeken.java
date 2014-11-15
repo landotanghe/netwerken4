@@ -78,11 +78,12 @@ public final class Boeken {
         dao.addBoekAndAuthors(boek);
        */
         //9  Eén boek toevoegen. In dit geval heeft het boek één auteur waarvan de unieke identificatie wordt meegegeven aan de methode.
-        int author_id=auteurs.get(0).getId();
+        int autheur_id=auteurs.get(0).getId();
         Boek boekje = maakBoek();
-        dao.addBoekAndAuthor(boekje,author_id);
+        dao.addBoekAndAuthor(boekje,autheur_id);
         
         //10 Een lijst van boeken van één uitgeverij, gekenmerkt door zijn naam, ophalen. Voor een boek zijn ook al zijn auteurs en de uitgeverij gekend.
+        List boekenVan = dao.getBoekenVanUitgever("Dupuis");
         
         //11 Een lijst van boeken waarvan de naam van één van de auteurs een opgegeven naam is. Gebruik hiervoor een SQLQuery (Meer info). Test eerst de select-opdracht uit in een "SQL Command" en voeg hem dan pas toe aan je javacode.
         

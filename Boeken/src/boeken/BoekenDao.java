@@ -8,6 +8,8 @@ package boeken;
 import data.*;
 import java.util.Iterator;
 import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -118,6 +120,19 @@ public class BoekenDao {
         auteur.add(boek);
         sessie.save(boek);
         sessie.save(auteur);
+    }
+
+    List getBoekenVanUitgever(String uitgeverij) {
+        Query query = sessie.createQuery("from Boek where uitgeverij.naam = ?");
+        query.setString(0, uitgeverij);
+        return query.list();
+    }
+    
+    List getBoekenVanSchrijver(String schrijver){
+        SQLQuery query = sessie.createSQLQuery("");
+        query.addEntity("BOEKEN",Boek.class);//entities toevoegen juist??
+        query.setString(0, schrijver);
+        return query.list();
     }
     
     
