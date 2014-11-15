@@ -59,7 +59,7 @@ public class Boek implements Serializable{
     }
 
     @ManyToOne()    
-    @JoinColumn(name = "uitgeverij")
+    @JoinColumn(name = "UITGEVERIJ")
     public Uitgeverij getUitgeverij() {
         return uitgeverij;
     }

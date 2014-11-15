@@ -8,6 +8,7 @@ package data;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -95,7 +96,7 @@ public class Uitgeverij implements Serializable{
     }
 
     @OneToMany(mappedBy = "uitgeverij")
-    public ArrayList<Boek> getBoeken() {
+    public List<Boek> getBoeken() {
         return boeken;
     }
 
