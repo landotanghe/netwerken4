@@ -6,11 +6,8 @@
 package boeken;
 
 import data.*;
-import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -114,6 +111,13 @@ public class BoekenDao {
     void addBoekAndAuthors(Boek boek) {
         sessie.save(boek);
         addWithIterator(boek.iteratorAuteurs());
+    }
+
+    void addBoekAndAuthors(Boek boek, int auteur_id) {
+        Auteur auteur = (Auteur) sessie.load(Auteur.class, auteur_id);
+        auteur.add(boek);
+        sessie.save(boek);
+        sessie.save(auteur);
     }
     
     

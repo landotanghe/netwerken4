@@ -63,21 +63,24 @@ public final class Boeken {
         //  aanpassen, m.a.w. beperk de interface van de teruggegeven objecten. Gebruik hiervoor refactoring.
         
         //7  Een lijst van auteurs opvragen. Ook hier zorg je ervoor dat de gebruiker enkel de beschikbare eigenschappen kan oproepen.
-     /*   System.out.println("Auteurs:");
+        System.out.println("Auteurs:");
         List<Auteur> auteurs = dao.getAuteurs();
         for(Auteur aut: auteurs){
             System.out.println(aut);
         }
-        
+        /*
         //8  Eén boek met bijhorende auteurs toevoegen. Je mag hierbij veronderstellen dat geen enkele auteur reeds ingegeven is in de databank.
         Boek boek = maakBoek();
-        for (Auteur schrijver : maakAuteurs()) {
+        Auteur schrijver = maakAuteurs().iterator().next();
+        //for (Auteur schrijver : maakAuteurs()) {
             schrijver.add(boek);
-        }
+        //}
         dao.addBoekAndAuthors(boek);
-       */ 
+       */
         //9  Eén boek toevoegen. In dit geval heeft het boek één auteur waarvan de unieke identificatie wordt meegegeven aan de methode.
-        //int id=auteurs.get(0).getId();
+        int author_id=auteurs.get(0).getId();
+        Boek boekje = maakBoek();
+        dao.addBoekAndAuthors(boekje,author_id);
         
         //10 Een lijst van boeken van één uitgeverij, gekenmerkt door zijn naam, ophalen. Voor een boek zijn ook al zijn auteurs en de uitgeverij gekend.
         
