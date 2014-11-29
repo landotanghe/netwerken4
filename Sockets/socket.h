@@ -28,6 +28,11 @@ struct NetwerkExceptie: public std::runtime_error
 	{}
 };
 
+in_addr** getaddrinfo(const char *name){
+	hostent* host = gethostbyname(name);
+	return (in_addr**) host->h_addr_list;
+}
+
 //Maakt een IPv4 socket-adres aan de hand van gegeven 'hostnaam' (bv. "localhost" of "www.example.net") en 'poort'.
 //Het derde argument is SOCK_STREAM of SOCK_DGRAM
 // throws NetwerkExceptie bij problemen.
@@ -35,6 +40,11 @@ sockaddr_in maak_adres_ipv4(const std::string &servernaam, short poort, int sock
 {
     //maak gebruik van getaddrinfo
     //print alle addressen van getaddrinfo uit, gebruik het eerste uit de lijst als returnwaarde
+    sockaddr_in s_adres;
+    memset(s_adres,0,sizeof(s_adres));
+    s_adres.sin_family = AF_INET;
+    
+    in_addr** in_adressen = getaddrinfo(servernaam.c_str());
 }
 
 //idem voor ipv6
