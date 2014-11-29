@@ -1,0 +1,40 @@
+In dit labo werken we in Linux met C++. Je mag NetBeans gebruiken.
+
+1. Header-file met hulpfuncties
+
+We zullen eerst een aantal hulpfuncties implementeren in socket.h.
+
+Implementeer eerst de methoden maak_adres_ipv4 en maak_adres_ipv6 met behulp van getaddrinfo. Deze laatste methode geeft een lijst van adressen terug.
+
+Print in de methode (als debug-informatie) alle adressen uit de lijst uit via inet_ntop.
+Als return-waarde mag je standaard het eerste element uit de lijst nemen.
+Error handling van getaddrinfo doe je met gai_strerror
+Krijg je verschillende resultaten naargelang het sockettype dat je meegeeft als argument? (SOCK_DGRAM, SOCK_STREAM en NULL)
+Wat gebeurt er als je een onbestaande domeinnaam meegeeft als argument?
+Test deze methodes uit in een hoofdprogramma: vind de IPv4 en IPv6 adressen van UGent en Facebook: www.ugent.be, www.v6.ugent.be, www.facebook.com, www.v6.facebook.com
+
+Implementeer nu de overige methodes uit socket.h. Gebruik exception handling voor de fouten. Een zinvolle foutboodschap horende bij de laatste netwerkfout bekom je via strerror(errno).
+
+OPM: In C++11 biedt de klasse std::string een statische methode aan om een int om te zetten naar een std::string. Indien de g++ compiler op jouw PC ten minste versie 4.7 is, dan kan je deze methode gebruiken (vergeet eventueel Netbeans niet te configureren om de juiste argumenten mee te geven aan de compiler). Is je compiler ouder, dan gebruik je best de eigen functie to_string in socket.h.
+
+2. Eenvoudige echo server
+
+Maak een eenvoudige echoserver. Dit is een server die alle input van de client letterlijk retourneert. Voor de eenvoud moet de server op dit ogenblik slechts één client kunnen behandelen. De server stopt automatisch indien de client de verbinding verbreekt.
+
+Test uit met telnet of nc, op localhost of met je buur.
+
+3. Echo client
+
+Maak een eenvoudig client die connecteert met een echoserver (die van jou, die van je buur, of die van een onwetend slachtoffer) en test uit.
+
+4. Echo server met fork
+
+Gebruik de 'fork' om ervoor te zorgen dat de echo-server meerdere clients aan kan. Zorg dat je geen sockets onnodig openhoudt.
+
+5. Berichten
+
+Protocols sturen vaak berichten die eindigen op een vaste delimiter, bv. "\n\n". Die berichten kunnen in principe langer zijn dan de inleesbuffer. In dat geval moeten er meerdere leesoperaties uitgevoerd worden om een volledig bericht te bekomen.
+
+Vul de klasse in berichtio.h aan.
+
+Test uit met echo-server en echo-client door een kleine buffer te nemen (bv. lengte 10) en als delimiter bv. een kommapunt.
